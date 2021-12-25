@@ -75,10 +75,10 @@ func init() {
 	// local flags for initCmd
 	initCmd.Flags().BoolVarP(&full, "full", "f", false, "initializes all files and directories in the recommend layout")
 	initCmd.Flags().BoolVarP(&ops, "ops", "o", false, "initializes all the operations related files")
-	initCmd.Flags().StringVarP(&license, "license", "lic", "mit", "initializes the license")
-	initCmd.Flags().StringVarP(&location, "location", "loc", location, "location for project structure setup")
+	initCmd.Flags().StringVarP(&license, "license", "i", "mit", "initializes the license")
+	initCmd.Flags().StringVarP(&location, "location", "l", location, "location for project structure setup")
 	initCmd.Flags().StringVarP(&author, "author", "a", "", "author name and email, e.g. Jane Doe jane.doe@gmail.com")
-	initCmd.Flags().StringVarP(&modulePath, "moduleP-path", "mp", ".", "module path for go mod init")
+	initCmd.Flags().StringVarP(&modulePath, "moduleP-path", "p", ".", "module path for go mod init")
 
 	// Here you will define your flags and configuration settings.
 
