@@ -175,7 +175,7 @@ func bareSetup() {
 
 	/// LICENSE file
 	if license == "mit" {
-		licenseData, err := os.ReadFile(filepath.Join(".", "data", "license", "mit"))
+		licenseData, err := os.ReadFile(filepath.Join(".", "data", "licenses", "mit"))
 		if err != nil {
 			utils.CheckErrNonFatal(err)
 		} else {
@@ -184,7 +184,7 @@ func bareSetup() {
 			}
 		}
 	} else if license == "apache" {
-		licenseData, err := os.ReadFile(filepath.Join(".", "data", "license", "apache"))
+		licenseData, err := os.ReadFile(filepath.Join(".", "data", "licenses", "apache"))
 		if err != nil {
 			utils.CheckErrNonFatal(err)
 		} else {
