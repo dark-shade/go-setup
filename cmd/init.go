@@ -195,7 +195,7 @@ func bareSetup() {
 		utils.CheckErrNonFatal(err)
 	}
 
-	/// CHANGELOG.md file TODO
+	/// CHANGELOG.md file
 	changelogData, err := os.ReadFile(filepath.Join(".", "data", "changelog"))
 	if err != nil {
 		utils.CheckErrNonFatal(err)
@@ -211,7 +211,7 @@ func opsSetup() {
 	// we cannot just return errors since these are all non-fatal errors
 
 	// create deployment related files
-	/// Dockerfile file TODO
+	/// Dockerfile file
 	dockerfileData, err := os.ReadFile(filepath.Join(".", "data", "dockerfile"))
 	if err != nil {
 		utils.CheckErrNonFatal(err)
@@ -221,7 +221,7 @@ func opsSetup() {
 		}
 	}
 
-	/// Jenkinsfile file TODO
+	/// Jenkinsfile file
 	jenkinsfileData, err := os.ReadFile(filepath.Join(".", "data", "jenkinsfile"))
 	if err != nil {
 		utils.CheckErrNonFatal(err)
