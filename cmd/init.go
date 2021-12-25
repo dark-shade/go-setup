@@ -22,6 +22,7 @@ THE SOFTWARE.
 package cmd
 
 import (
+	"errors"
 	"fmt"
 	"os"
 	"path/filepath"
@@ -49,7 +50,15 @@ var initCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("debug: init called")
 
-		// TODO check location values, module path, author
+		// check location exists
+		locationExists, err := utils.Exists(location)
+		if err != nil {
+			utils.CheckErrFatal(err)
+		}
+
+		if !locationExists {
+			utils.CheckErrFatal(errors.New("location to initialize project doesn't exist"))
+		}
 
 		if full {
 			fmt.Println("debug: init full called")
