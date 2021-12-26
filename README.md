@@ -4,8 +4,7 @@ CLI tool to setup Golang project.
 
 ## Installation
 
-Execute ```bash
-go install github.com/dark-shade/go-setup```.
+Execute `go install github.com/dark-shade/go-setup`.
 
 ## Usage
 
