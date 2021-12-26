@@ -7,7 +7,7 @@ CLI tool to setup Golang project. It loosely follows [golang-standards/project-l
 
 ## Installation
 
-Execute `go install github.com/dark-shade/go-setup`.
+Execute `go install github.com/dark-shade/go-setup@latest`.
 
 ## Usage
 
