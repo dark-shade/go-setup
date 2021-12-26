@@ -1,3 +1,6 @@
+![codeql workflow](https://github.com/dark-shade/go-setup/actions/workflows/codeql-analysis.yml/badge.svg)
+![makefile workflow](https://github.com/dark-shade/go-setup/actions/workflows/makefile.yml/badge.svg)
+
 # go-setup
 
 CLI tool to setup Golang project. It loosely follows [golang-standards/project-layout](https://github.com/golang-standards/project-layout).
