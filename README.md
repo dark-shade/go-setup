@@ -1,6 +1,6 @@
 # go-setup
 
-CLI tool to setup Golang project.
+CLI tool to setup Golang project. It loosely follows [golang-standards/project-layout](https://github.com/golang-standards/project-layout).
 
 ## Installation
 
