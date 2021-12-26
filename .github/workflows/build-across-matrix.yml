@@ -1,4 +1,4 @@
-name: Test Build Across Matrix
+name: Build
 
 on:
   push:

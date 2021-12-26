@@ -1,5 +1,5 @@
 ![codeql workflow](https://github.com/dark-shade/go-setup/actions/workflows/codeql-analysis.yml/badge.svg)
-![makefile workflow](https://github.com/dark-shade/go-setup/actions/workflows/makefile.yml/badge.svg)
+![build workflow](https://github.com/dark-shade/go-setup/actions/workflows/build-across-matrix.yml/badge.svg)
 
 # go-setup
 
