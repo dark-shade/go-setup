@@ -22,6 +22,7 @@ THE SOFTWARE.
 package cmd
 
 import (
+	"embed"
 	"errors"
 	"fmt"
 	"os"
@@ -41,6 +42,9 @@ var (
 	author     string
 	modulePath string
 )
+
+//go:embed data/*
+var f embed.FS
 
 // initCmd represents the init command
 var initCmd = &cobra.Command{
@@ -134,7 +138,7 @@ func bareSetup() {
 
 	// setup files
 	/// main.go file
-	mainData, err := os.ReadFile(filepath.Join(".", "data", "main"))
+	mainData, err := f.ReadFile(filepath.Join(".", "data", "main"))
 	if err != nil {
 		utils.CheckErrNonFatal(err)
 	} else {
@@ -144,7 +148,7 @@ func bareSetup() {
 	}
 
 	/// .gitignore file
-	gitignoreData, err := os.ReadFile(filepath.Join(".", "data", "gitignore"))
+	gitignoreData, err := f.ReadFile(filepath.Join(".", "data", "gitignore"))
 	if err != nil {
 		utils.CheckErrNonFatal(err)
 	} else {
@@ -154,7 +158,7 @@ func bareSetup() {
 	}
 
 	/// Makefile file
-	makefileData, err := os.ReadFile(filepath.Join(".", "data", "makefile"))
+	makefileData, err := f.ReadFile(filepath.Join(".", "data", "makefile"))
 	if err != nil {
 		utils.CheckErrNonFatal(err)
 	} else {
@@ -164,7 +168,7 @@ func bareSetup() {
 	}
 
 	/// README.md file
-	readmeData, err := os.ReadFile(filepath.Join(".", "data", "readme"))
+	readmeData, err := f.ReadFile(filepath.Join(".", "data", "readme"))
 	if err != nil {
 		utils.CheckErrNonFatal(err)
 	} else {
@@ -175,7 +179,7 @@ func bareSetup() {
 
 	/// LICENSE file
 	if license == "mit" {
-		licenseData, err := os.ReadFile(filepath.Join(".", "data", "licenses", "mit"))
+		licenseData, err := f.ReadFile(filepath.Join(".", "data", "licenses", "mit"))
 		if err != nil {
 			utils.CheckErrNonFatal(err)
 		} else {
@@ -184,7 +188,7 @@ func bareSetup() {
 			}
 		}
 	} else if license == "apache" {
-		licenseData, err := os.ReadFile(filepath.Join(".", "data", "licenses", "apache"))
+		licenseData, err := f.ReadFile(filepath.Join(".", "data", "licenses", "apache"))
 		if err != nil {
 			utils.CheckErrNonFatal(err)
 		} else {
@@ -197,7 +201,7 @@ func bareSetup() {
 	}
 
 	/// go.mod file
-	r, _ := regexp.Compile(`\\d.\\d+`)
+	r, _ := regexp.Compile(`\d.\d+`)
 
 	goModData := "module github.com/dark-shade/temp\ngo " + r.FindString(runtime.Version())
 	if err := os.WriteFile(filepath.Join(location, "go.mod"), []byte(goModData), os.ModePerm); err != nil {
@@ -205,7 +209,7 @@ func bareSetup() {
 	}
 
 	/// CHANGELOG.md file
-	changelogData, err := os.ReadFile(filepath.Join(".", "data", "changelog"))
+	changelogData, err := f.ReadFile(filepath.Join(".", "data", "changelog"))
 	if err != nil {
 		utils.CheckErrNonFatal(err)
 	} else {
@@ -221,7 +225,7 @@ func opsSetup() {
 
 	// create deployment related files
 	/// Dockerfile file
-	dockerfileData, err := os.ReadFile(filepath.Join(".", "data", "dockerfile"))
+	dockerfileData, err := f.ReadFile(filepath.Join(".", "data", "dockerfile"))
 	if err != nil {
 		utils.CheckErrNonFatal(err)
 	} else {
@@ -231,7 +235,7 @@ func opsSetup() {
 	}
 
 	/// Jenkinsfile file
-	jenkinsfileData, err := os.ReadFile(filepath.Join(".", "data", "jenkinsfile"))
+	jenkinsfileData, err := f.ReadFile(filepath.Join(".", "data", "jenkinsfile"))
 	if err != nil {
 		utils.CheckErrNonFatal(err)
 	} else {
