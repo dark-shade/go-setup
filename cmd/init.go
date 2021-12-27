@@ -142,7 +142,7 @@ func bareSetup() {
 	if err != nil {
 		utils.CheckErrNonFatal(err)
 	} else {
-		if err := os.WriteFile(filepath.Join(location, "main.go"), mainData, os.ModePerm); err != nil {
+		if err := utils.CreateFile(filepath.Join(location, "main.go"), mainData, os.ModePerm); err != nil {
 			utils.CheckErrNonFatal(err)
 		}
 	}
@@ -152,7 +152,7 @@ func bareSetup() {
 	if err != nil {
 		utils.CheckErrNonFatal(err)
 	} else {
-		if err := os.WriteFile(filepath.Join(location, ".gitignore"), gitignoreData, os.ModePerm); err != nil {
+		if err := utils.CreateFile(filepath.Join(location, ".gitignore"), gitignoreData, os.ModePerm); err != nil {
 			utils.CheckErrNonFatal(err)
 		}
 	}
@@ -162,7 +162,7 @@ func bareSetup() {
 	if err != nil {
 		utils.CheckErrNonFatal(err)
 	} else {
-		if err := os.WriteFile(filepath.Join(location, "Makefile"), makefileData, os.ModePerm); err != nil {
+		if err := utils.CreateFile(filepath.Join(location, "Makefile"), makefileData, os.ModePerm); err != nil {
 			utils.CheckErrNonFatal(err)
 		}
 	}
@@ -172,7 +172,7 @@ func bareSetup() {
 	if err != nil {
 		utils.CheckErrNonFatal(err)
 	} else {
-		if err := os.WriteFile(filepath.Join(location, "README.md"), readmeData, os.ModePerm); err != nil {
+		if err := utils.CreateFile(filepath.Join(location, "README.md"), readmeData, os.ModePerm); err != nil {
 			utils.CheckErrNonFatal(err)
 		}
 	}
@@ -183,7 +183,7 @@ func bareSetup() {
 		if err != nil {
 			utils.CheckErrNonFatal(err)
 		} else {
-			if err := os.WriteFile(filepath.Join(location, "LICENSE"), licenseData, os.ModePerm); err != nil {
+			if err := utils.CreateFile(filepath.Join(location, "LICENSE"), licenseData, os.ModePerm); err != nil {
 				utils.CheckErrNonFatal(err)
 			}
 		}
@@ -192,7 +192,7 @@ func bareSetup() {
 		if err != nil {
 			utils.CheckErrNonFatal(err)
 		} else {
-			if err := os.WriteFile(filepath.Join(location, "LICENSE"), licenseData, os.ModePerm); err != nil {
+			if err := utils.CreateFile(filepath.Join(location, "LICENSE"), licenseData, os.ModePerm); err != nil {
 				utils.CheckErrNonFatal(err)
 			}
 		}
@@ -204,7 +204,7 @@ func bareSetup() {
 	r, _ := regexp.Compile(`\d.\d+`)
 
 	goModData := "module github.com/dark-shade/temp\ngo " + r.FindString(runtime.Version())
-	if err := os.WriteFile(filepath.Join(location, "go.mod"), []byte(goModData), os.ModePerm); err != nil {
+	if err := utils.CreateFile(filepath.Join(location, "go.mod"), []byte(goModData), os.ModePerm); err != nil {
 		utils.CheckErrNonFatal(err)
 	}
 
@@ -213,7 +213,7 @@ func bareSetup() {
 	if err != nil {
 		utils.CheckErrNonFatal(err)
 	} else {
-		if err := os.WriteFile(filepath.Join(location, "CHANGELOG.md"), changelogData, os.ModePerm); err != nil {
+		if err := utils.CreateFile(filepath.Join(location, "CHANGELOG.md"), changelogData, os.ModePerm); err != nil {
 			utils.CheckErrNonFatal(err)
 		}
 	}
@@ -229,7 +229,7 @@ func opsSetup() {
 	if err != nil {
 		utils.CheckErrNonFatal(err)
 	} else {
-		if err := os.WriteFile(filepath.Join(location, "Dockerfile"), dockerfileData, os.ModePerm); err != nil {
+		if err := utils.CreateFile(filepath.Join(location, "Dockerfile"), dockerfileData, os.ModePerm); err != nil {
 			utils.CheckErrNonFatal(err)
 		}
 	}
@@ -239,7 +239,7 @@ func opsSetup() {
 	if err != nil {
 		utils.CheckErrNonFatal(err)
 	} else {
-		if err := os.WriteFile(filepath.Join(location, "Jenkinsfile"), jenkinsfileData, os.ModePerm); err != nil {
+		if err := utils.CreateFile(filepath.Join(location, "Jenkinsfile"), jenkinsfileData, os.ModePerm); err != nil {
 			utils.CheckErrNonFatal(err)
 		}
 	}
