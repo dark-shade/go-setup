@@ -138,7 +138,7 @@ func bareSetup() {
 
 	// setup files
 	/// main.go file
-	mainData, err := f.ReadFile(filepath.Join(".", "data", "main"))
+	mainData, err := f.ReadFile(filepath.Join(".", "data", "main.go"))
 	if err != nil {
 		utils.CheckErrNonFatal(err)
 	} else {
@@ -148,7 +148,7 @@ func bareSetup() {
 	}
 
 	/// .gitignore file
-	gitignoreData, err := f.ReadFile(filepath.Join(".", "data", "gitignore"))
+	gitignoreData, err := f.ReadFile(filepath.Join(".", "data", ".gitignore"))
 	if err != nil {
 		utils.CheckErrNonFatal(err)
 	} else {
@@ -158,7 +158,7 @@ func bareSetup() {
 	}
 
 	/// Makefile file
-	makefileData, err := f.ReadFile(filepath.Join(".", "data", "makefile"))
+	makefileData, err := f.ReadFile(filepath.Join(".", "data", "Makefile"))
 	if err != nil {
 		utils.CheckErrNonFatal(err)
 	} else {
@@ -168,7 +168,7 @@ func bareSetup() {
 	}
 
 	/// README.md file
-	readmeData, err := f.ReadFile(filepath.Join(".", "data", "readme"))
+	readmeData, err := f.ReadFile(filepath.Join(".", "data", "README.md"))
 	if err != nil {
 		utils.CheckErrNonFatal(err)
 	} else {
@@ -209,7 +209,7 @@ func bareSetup() {
 	}
 
 	/// CHANGELOG.md file
-	changelogData, err := f.ReadFile(filepath.Join(".", "data", "changelog"))
+	changelogData, err := f.ReadFile(filepath.Join(".", "data", "CHANGELOG.md"))
 	if err != nil {
 		utils.CheckErrNonFatal(err)
 	} else {
@@ -225,7 +225,7 @@ func opsSetup() {
 
 	// create deployment related files
 	/// Dockerfile file
-	dockerfileData, err := f.ReadFile(filepath.Join(".", "data", "dockerfile"))
+	dockerfileData, err := f.ReadFile(filepath.Join(".", "data", "Dockerfile"))
 	if err != nil {
 		utils.CheckErrNonFatal(err)
 	} else {
@@ -235,7 +235,7 @@ func opsSetup() {
 	}
 
 	/// Jenkinsfile file
-	jenkinsfileData, err := f.ReadFile(filepath.Join(".", "data", "jenkinsfile"))
+	jenkinsfileData, err := f.ReadFile(filepath.Join(".", "data", "Jenkinsfile"))
 	if err != nil {
 		utils.CheckErrNonFatal(err)
 	} else {
