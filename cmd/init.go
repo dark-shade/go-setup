@@ -41,6 +41,7 @@ var (
 	location   string
 	author     string
 	modulePath string
+	profiles   []string
 )
 
 //go:embed data/*
@@ -64,13 +65,45 @@ var initCmd = &cobra.Command{
 			utils.CheckErrFatal(errors.New("location to initialize project doesn't exist"))
 		}
 
+		// create .go-setup directory structure in user home
+		homeDirPath, err := os.UserHomeDir()
+		if err != nil {
+			utils.CheckErrNonFatal(err)
+		}
+
+		// TODO remove this
+		utils.CheckDebug("home dir path = " + homeDirPath)
+
+		if err := os.MkdirAll(filepath.Join(homeDirPath, ".go-setup", "profiles"), os.ModePerm); err != nil {
+			utils.CheckErrNonFatal(err)
+		}
+
+		// location for file definitions and data
+		var profileLoc string
+
+		if len(profiles) > 1 || profiles[0] != "default" {
+			// get home directory
+			homeDirPath, err := os.UserHomeDir()
+			if err != nil {
+				utils.CheckErrNonFatal(err)
+			}
+
+			for _, profile := range profiles {
+				utils.CheckDebug("profile = " + profile)
+
+				profileLoc = filepath.Join(homeDirPath, ".go-setup", "profiles", profile)
+
+				utils.CopyDirectory(profileLoc, location)
+			}
+		}
+
 		if full {
 			fmt.Println("debug: init full called")
 			bareSetup()
 			opsSetup()
 			remainderSetup()
 		} else {
-			fmt.Println("debug: init full not called, init bare (default)")
+			fmt.Println("debug: init full not called, init bare (default) called")
 			bareSetup()
 		}
 
@@ -92,6 +125,7 @@ func init() {
 	initCmd.Flags().StringVarP(&location, "location", "l", ".", "location for project structure setup")
 	initCmd.Flags().StringVarP(&author, "author", "a", "", "author name and email, e.g. Jane Doe jane.doe@gmail.com")
 	initCmd.Flags().StringVarP(&modulePath, "moduleP-path", "m", ".", "module path for go mod init")
+	initCmd.Flags().StringSliceVarP(&profiles, "profile", "p", []string{"default"}, "profile to use for project setup")
 
 	// Here you will define your flags and configuration settings.
 
