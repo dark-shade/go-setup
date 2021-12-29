@@ -42,6 +42,7 @@ var (
 	author     string
 	modulePath string
 	profiles   []string
+	config     bool
 )
 
 //go:embed data/*
@@ -71,11 +72,14 @@ var initCmd = &cobra.Command{
 			utils.CheckErrNonFatal(err)
 		}
 
-		// TODO remove this
-		utils.CheckDebug("home dir path = " + homeDirPath)
-
 		if err := os.MkdirAll(filepath.Join(homeDirPath, ".go-setup", "profiles"), os.ModePerm); err != nil {
 			utils.CheckErrNonFatal(err)
+		} else {
+			fmt.Println("Config and profiles path setup up at " + filepath.Join(homeDirPath, ".go-setup", "profiles"))
+		}
+
+		if config {
+			return
 		}
 
 		// location for file definitions and data
@@ -126,6 +130,7 @@ func init() {
 	initCmd.Flags().StringVarP(&author, "author", "a", "", "author name and email, e.g. Jane Doe jane.doe@gmail.com")
 	initCmd.Flags().StringVarP(&modulePath, "moduleP-path", "m", ".", "module path for go mod init")
 	initCmd.Flags().StringSliceVarP(&profiles, "profile", "p", []string{"default"}, "profile to use for project setup")
+	initCmd.Flags().BoolVarP(&config, "config", "c", false, "initializes the ~/.go-setup/profiles path")
 
 	// Here you will define your flags and configuration settings.
 
