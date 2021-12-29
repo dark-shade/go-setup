@@ -54,8 +54,6 @@ var initCmd = &cobra.Command{
 	Short: "Initializes a project",
 	Long:  `Initializes a project by adding recommended directory structure and files.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("debug: init called")
-
 		// check location exists
 		locationExists, err := utils.Exists(location)
 		if err != nil {
@@ -92,8 +90,10 @@ var initCmd = &cobra.Command{
 				utils.CheckErrNonFatal(err)
 			}
 
+			fmt.Println("Copying profiles...")
+
 			for _, profile := range profiles {
-				utils.CheckDebug("profile = " + profile)
+				fmt.Println("Copying profile: " + profile)
 
 				profileLoc = filepath.Join(homeDirPath, ".go-setup", "profiles", profile)
 
@@ -102,20 +102,22 @@ var initCmd = &cobra.Command{
 		}
 
 		if full {
-			fmt.Println("debug: init full called")
+			fmt.Println("Setting up full-scale project structure...")
 			bareSetup()
 			opsSetup()
 			remainderSetup()
+			fmt.Println("Finished full-scale project structure setup")
 		} else {
-			fmt.Println("debug: init full not called, init bare (default) called")
+			fmt.Println("Setting up bare-minimum project structure...")
 			bareSetup()
+			fmt.Println("Finished bare-minimum project structure setup")
 		}
 
 		if ops {
-			fmt.Println("debug: init ops called")
+			fmt.Println("Setting up operations project structure...")
 			opsSetup()
+			fmt.Println("Finished operations project structure setup")
 		}
-
 	},
 }
 
@@ -124,7 +126,7 @@ func init() {
 
 	// local flags for initCmd
 	initCmd.Flags().BoolVarP(&full, "full", "f", false, "initializes all files and directories in the recommend layout")
-	initCmd.Flags().BoolVarP(&ops, "ops", "o", false, "initializes all the operations related files")
+	initCmd.Flags().BoolVarP(&ops, "ops", "o", false, "initializes all the operations related files (also initializes bare-minimum setup)")
 	initCmd.Flags().StringVarP(&license, "license", "i", "mit", "initializes the license")
 	initCmd.Flags().StringVarP(&location, "location", "l", ".", "location for project structure setup")
 	initCmd.Flags().StringVarP(&author, "author", "a", "", "author name and email, e.g. Jane Doe jane.doe@gmail.com")
@@ -335,5 +337,4 @@ func remainderSetup() {
 	if err := os.Mkdir(filepath.Join(location, "website"), os.ModePerm); err != nil {
 		utils.CheckErrNonFatal(err)
 	}
-
 }
